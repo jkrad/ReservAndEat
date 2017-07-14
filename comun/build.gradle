@@ -1,0 +1,10 @@
+apply plugin: 'java'
+dependencies {
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+  compile 'javax.validation:validation-api:1.0.0.GA'
+  compile 'net.sourceforge.streamsupport:streamsupport:1.5.4'
+  compile 'org.mini2Dx:android-beans:1.0.0'
+  compile 'com.fasterxml.jackson.jr:jackson-jr-objects:2.9.0.pr3'
+}
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

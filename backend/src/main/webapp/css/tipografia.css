@@ -1,0 +1,30 @@
+/* Copyright 2017 Gilberto Pacheco Gallegos.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. */
+/*  Created on : 19/05/2017, 11:45:07 AM
+    Author     : Gilberto Pacheco Gallegos */
+@CHARSET "UTF-8";
+form-sesion a {font-weight: 500}
+img, label > span, legend, p [name$="Error"] {font-size: 12px}
+header h1, .herramientas h1 {
+  font-size: 20px;
+  font-weight: 500;
+}
+label > span.valor, input, p label textarea, rmpt-renglon .textos .texto1 {
+  font: 16px/24px Roboto, Noto, sans-serif
+}
+body, rmpt-selector, p input[type="button"], p input[type="submit"],
+form-sesion a, rmpt-renglon .textos .texto2 {
+  font: 14px/20px Roboto, Noto, sans-serif
+}
+rmpt-selector, p input[type="button"], p input[type="submit"] {font-weight: 500}

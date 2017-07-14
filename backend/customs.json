@@ -1,0 +1,17 @@
+{
+  "elements": {
+    "rmpt-selector": {},
+    "rmpt-indica-campos-obligatorios": {},
+    "rmpt-herramientas-detalle": {
+      "attributes": {
+        "confirmacion": {}
+      }
+    },
+    "rmpt-lista": {},
+    "rmpt-indicador": {}
+  },
+  "attributes": {
+    "id": {},
+    "class": {}
+  }
+}

@@ -1,0 +1,72 @@
+form-sesion
+  S - Iniciar Sesión - iniciarSesion
+  T - Terminar Sesión - terminarSesion
+
+rmpt-buequeda
+  B - Buscar (interno)
+
+compro-panel-maestro
+  B - Buscar - filtro (interno)
+  A - Agregar - agregar
+
+rmpt-herramientas-detalle
+  C - Cerrar - cerrar
+  E - Eliminar - eliminar
+      Guardar - submit
+
+form-avisos
+  compro-panel-maestro
+  rmpt-herramientas-detalle
+  U - Título - titulo
+  F - Fecha - fecha
+  X - Texto - texto
+
+form-carrito
+  B - Buscar - filtro (interno)
+  V - Guardar Venta - guardarVenta
+  P - Pagar - pagar
+  F - Fecha y Hora de Entrega (aaaa-mm-ddThh:mm) - fechaHoraDeEntrega
+  D - Dirección de Entrega - direccionDeEntrega
+  I - Cantidad cantidad
+
+form-categorias
+  compro-panel-maestro
+  rmpt-herramientas-detalle
+  N - Nombre
+
+form-clientes
+  compro-panel-maestro
+  rmpt-herramientas-detalle
+  M - Nacimiento - nacimiento
+  H - Hora Favorita - horaFavorita
+
+form-iniciar-sesion
+  C - Cerrar - cerrar
+  I - Identificador - key - keyError
+  O - Contraseña - contrasena - contrasenaError
+      Iniciar Sesión - submit
+
+form-productos-cliente
+  B - Buscar - filtro (interno)
+  C - Cerrar - cerrar
+  O - Comprar - comprar
+
+form-productos
+  compro-panel-maestro
+  rmpt-herramientas-detalle
+  I - Imagen - imagen
+  N - Nombre - nombre
+      Categoría - categoria
+  P - Precio - precio
+  X - Existencias - existencias
+
+form-usuarios
+  compro-panel-maestro
+  rmpt-herramientas-detalle
+  I - Identificador - key
+  O - Contraseña - contrasena
+  F - Confirma la Contraseña - confirma
+  N - Nombre - nombre
+      Roles - roles
+
+  

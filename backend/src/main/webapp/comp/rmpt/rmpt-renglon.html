@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- Copyright 2017 Gilberto Pacheco Gallegos.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Renglón de Lista.</title>
+        <style>
+            rmpt-renglon {
+                margin: 1em;
+                display: flex;
+            }
+            .seleccionable rmpt-renglon {cursor: pointer}
+            rmpt-renglon img {
+                margin-right: 1em;
+                width: 150px
+            }
+            rmpt-renglon .textos {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+        </style>
+    </head>
+    <body>
+        <template>
+            <img alt="Imagen">
+            <span class="textos">
+                <span class="texto1"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="submit"
+                                             >Modificar</button></span>
+                <span class="texto2"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="submit"
+                                             >Modificar</button></span>
+            </span>
+            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Modificar</button>
+        </template>
+        <script>
+            "use strict";
+            (function () {
+                let template = elementPrevio();
+                registraElement("rmpt-renglon", class extends HTMLElement {
+                    connectedCallback() {
+                        cargaTemplate(this, template);
+                        Object.defineProperty(this, "boton", {
+                            enumerated: true,
+                            value: this.querySelector("button")
+                        });
+                        const value = this.value;
+                        const img = this.querySelector("img");
+                        const texto1 = this.querySelector(".texto1");
+                        const texto2 = this.querySelector(".texto2");
+                        if (value.imagen) {
+                            img.src = value.imagen;
+                        } else {
+                            setVisible(img, false);
+                        }
+                        if (value.texto1) {
+                            texto1.textContent = value.texto1;
+                        } else {
+                            setVisible(texto1, false);
+                        }
+                        if (value.texto2) {
+                            texto2.textContent = value.texto2;
+                        } else {
+                            setVisible(texto2, false);
+                        }
+                        if (this.forEach) {
+                            this.forEach(this);
+                        }
+                    }
+                });
+            })();
+        </script>
+    </body>
+</html>

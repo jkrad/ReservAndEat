@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 Gilberto Pacheco Gallegos.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<html>
+    <head>
+        <title>Categorías</title>
+        <meta charset="UTF-8">
+        <link rel="import" href="compro-panel-maestro.html">
+        <link rel="import" href="rmpt/rmpt-herramientas-detalle.html">
+        <link rel="import" href="rmpt/rmpt-indicador.html">
+        <link rel="import" href="rmpt/rmpt-indica-campos-obligatorios.html">
+    </head>
+    <body>
+        <template>
+            <form action="javascript:;">
+                <compro-panel-maestro id="maestro" titulo="Servicios"></compro-panel-maestro>
+                <div id="detalle" class="panel">
+                    <rmpt-herramientas-detalle
+                        confirmacion="Confirma eliminar esta categoría.">
+                    </rmpt-herramientas-detalle>
+                    <rmpt-indicador></rmpt-indicador>
+                    <div class="contenido">
+                        <main role="main">
+                            <div class="demo-cards mdl-cell--11-col-desktop mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+                                <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+                                    <div class="mdl-card__title mdl-card--expand mdl-color--orange">
+                                        <h2 class="mdl-card__title-text">Servicios</h2>
+                                    </div>
+                                    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                                        <p>
+                                            <label accesskey="N">
+                                                <span class="flotante">Nombre *</span>
+                                                <input name="nombre" type="text">
+                                            </label>
+                                            <output name="nombreError"></output>
+                                        </p>
+                                        <rmpt-indica-campos-obligatorios></rmpt-indica-campos-obligatorios>
+                                    </div>
+                                    <div class="mdl-card__actions mdl-card--border">
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" title="Guardar" type="submit">Guardar</button>
+                                        <button name="cerrar" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="button"
+                                                >Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                        <compro-footer></compro-footer>
+                    </div>
+                </div>
+            </form>
+        </template>
+        <script>
+            "use strict";
+            (function () {
+                let template = elementPrevio();
+                registraElement("form-servicio", class extends HTMLElement {
+                    connectedCallback() {
+                        this.classList.add("multipanel");
+                        cargaTemplate(this, template);
+                        new MedWeb(this.querySelector("form"), "ctrlServicio").inicia();
+                    }
+                });
+            })();
+        </script>
+    </body>
+</html>

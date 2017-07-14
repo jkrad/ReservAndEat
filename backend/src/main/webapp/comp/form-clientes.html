@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!-- Copyright 2017 Gilberto Pacheco Gallegos.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+<html>
+  <head>
+    <title>Categorías</title>
+    <meta charset="UTF-8">
+    <link rel="import" href="compro-panel-maestro.html">
+    <link rel="import" href="rmpt/rmpt-herramientas-detalle.html">
+    <link rel="import" href="rmpt/rmpt-indicador.html">
+    <link rel="import" href="rmpt/rmpt-selecciona-uno.html">
+    <link rel="import" href="rmpt/rmpt-indica-campos-obligatorios.html">
+  </head>
+  <body>
+    <template>
+      <form action="javascript:;">
+        <input name="campoParentMuestra" type="hidden">
+        <compro-panel-maestro id="maestro"
+                              titulo="Clientes"></compro-panel-maestro>
+        <div id="detalle" class="panel">
+          <rmpt-herramientas-detalle
+            confirmacion="Confirma eliminar este cliente.">
+          </rmpt-herramientas-detalle>
+          <rmpt-indicador></rmpt-indicador>
+          <div class="contenido">
+            <main role="main">
+              <fieldset id="campoParent">
+                <legend>Identificador *</legend>
+                <output name="parentError"></output>
+                <rmpt-selecciona-uno id="parent" vacio="img/vacio.png"
+                                     alt="No hay datos registrados."
+                                     sinseleccion="Sin selección."></rmpt-selecciona-uno>
+              </fieldset>
+              <p>
+                <label accesskey="N">
+                  <span>Nacimiento * (aaaa-mm-dd)</span>
+                  <input name="nacimiento" type="date">
+                </label>
+                <output name="nacimientoError"></output>
+              </p>
+              <p>
+                <label accesskey="H">
+                  <span>Hora Favorita * (hh:mm)</span>
+                  <input name="horaFavorita" type="time">
+                </label>
+                <output name="horaFavoritaError"></output>
+              </p>
+              <rmpt-indica-campos-obligatorios></rmpt-indica-campos-obligatorios>
+            </main>
+            <compro-footer></compro-footer>
+          </div>
+        </div>
+      </form>
+    </template>
+    <script>
+      "use strict";
+      (function () {
+        let template = elementPrevio();
+        registraElement("form-clientes", class extends HTMLElement {
+          connectedCallback() {
+            this.classList.add("multipanel");
+            cargaTemplate(this, template);
+            new MedWeb(this.querySelector("form"), "ctrlClientes").inicia();
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

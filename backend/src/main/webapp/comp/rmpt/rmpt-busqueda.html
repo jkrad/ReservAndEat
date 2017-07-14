@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 Gilberto Pacheco Gallegos.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Barra de Herramientas para las Vistas de Detalle.</title>
+    <style>
+      rmpt-busqueda, rmpt-busqueda > * {
+        display: flex;
+        align-items: center;
+        vertical-align: middle;
+        flex: 1 0  /* flex-grow sin flex-shrink */
+      }
+      rmpt-busqueda h1, rmpt-busqueda [type="search"] {flex: 1}
+    </style>
+    <link rel="import" href="rmpt-boton-menu.html">
+  </head>
+  <body>
+    <template>
+      <div class="principal">
+        <rmpt-boton-menu></rmpt-boton-menu>
+        <h1></h1>
+        <button type="button" class="buscar" accesskey="B"
+                title="Buscar"></button>
+      </div>
+      <div class="busqueda">
+        <button type="button" class="atras" title="Terminar Búsqueda"></button>
+        <input type="search" placeholder="Buscar">
+      </div>
+    </template>
+    <script>
+      "use strict";
+      (function () {
+        let template = elementPrevio();
+        registraElement("rmpt-busqueda", class extends HTMLElement {
+          connectedCallback() {
+            cargaTemplate(this, template);
+            this.querySelector("h1").textContent = this.getAttribute("titulo");
+            let principal = this.querySelector(".principal");
+            let busqueda = this.querySelector(".busqueda");
+            let search = this.querySelector("[type='search']");
+            setVisible(busqueda, false);
+            this.querySelector(".buscar").addEventListener("click", () => {
+              setVisible(principal, false);
+              setVisible(busqueda, true);
+              search.value = "";
+              search.dispatchEvent(new Event('input'));
+            });
+            this.querySelector(".atras").addEventListener("click", () => {
+              setVisible(principal, true);
+              setVisible(busqueda, false);
+              search.value = "";
+              search.dispatchEvent(new Event('input'));
+            });
+          }
+          static get observedAttributes() {
+            return ["titulo"];
+          }
+          // Solo se invoca para titulo, porque lo indica observedAttributes
+          attributeChangedCallback(name, oldValue, newValue) {
+            if (name === "titulo") {
+              let h1 = this.querySelector("h1");
+              if (h1) {
+                h1.textContent = newValue;
+              }
+            }
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

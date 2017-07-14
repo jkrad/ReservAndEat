@@ -1,0 +1,77 @@
+/* Copyright 2017 Gilberto Pacheco Gallegos.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. */
+/*  Created on : 18/05/2017, 09:40:33 AM
+    Author     : Gilberto Pacheco Gallegos
+    Modificaciòn del Script generado por
+    https://google-webfonts-helper.herokuapp.com */
+@CHARSET "UTF-8";
+/* roboto-300 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  /* Modo de Compatibilidad de IE9 */
+  src: url('../fonts/roboto-v16-latin-300.eot');
+  src: local('Roboto Light'), local('Roboto-Light'),
+    /* IE6-IE8 */
+    url('../fonts/roboto-v16-latin-300.eot?#iefix') format('embedded-opentype'),
+    /* Navegadores más modernos */
+    url('../fonts/roboto-v16-latin-300.woff2') format('woff2'),
+    /* Navegadores modernos */
+    url('../fonts/roboto-v16-latin-300.woff') format('woff'),
+    /* Safari, Android, iOS */
+    url('../fonts/roboto-v16-latin-300.ttf') format('truetype'),
+    /* iOS viejo */
+    url('../fonts/roboto-v16-latin-300.svg#Roboto') format('svg');
+}
+
+/* roboto-regular - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  /* Modo de Compatibilidad de IE9 */
+  src: url('../fonts/roboto-v16-latin-regular.eot');
+  src: local('Roboto'), local('Roboto-Regular'),
+    /* IE6-IE8 */
+    url('../fonts/roboto-v16-latin-regular.eot?#iefix') format('embedded-opentype'),
+    /* Navegadores más modernos */
+    url('../fonts/roboto-v16-latin-regular.woff2') format('woff2'),
+    /* Navegadores modernos */
+    url('../fonts/roboto-v16-latin-regular.woff') format('woff'),
+    /* Safari, Android, iOS */
+    url('../fonts/roboto-v16-latin-regular.ttf') format('truetype'),
+    /* iOS viejo */
+    url('../fonts/roboto-v16-latin-regular.svg#Roboto') format('svg');
+}
+
+/* roboto-500 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  /* Modo de Compatibilidad de IE9 */
+  src: url('../fonts/roboto-v16-latin-500.eot');
+  src: local('Roboto Medium'), local('Roboto-Medium'),
+    /* IE6-IE8 */
+    url('../fonts/roboto-v16-latin-500.eot?#iefix') format('embedded-opentype'),
+    /* Navegadores más modernos */
+    url('../fonts/roboto-v16-latin-500.woff2') format('woff2'),
+    /* Navegadores modernos */
+    url('../fonts/roboto-v16-latin-500.woff') format('woff'),
+    /* Safari, Android, iOS */
+    url('../fonts/roboto-v16-latin-500.ttf') format('truetype'),
+    /* iOS viejo */
+    url('../fonts/roboto-v16-latin-500.svg#Roboto') format('svg');
+}

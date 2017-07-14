@@ -1,0 +1,107 @@
+/* Copyright 2017 Gilberto Pacheco Gallegos.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. */
+/*  Created on : 17/05/2017, 10:15:47 PM
+    Author     : Gilberto Pacheco Gallegos */
+
+@CHARSET "UTF-8";
+
+/* Color */
+body, label > span.valor, rmpt-lista img, form-sesion a,
+rmpt-renglon .textos .texto1 {
+    color: rgba(0,0,0,0.87)
+}
+/************************* Body del documento *********************************/
+.panel > .contenido { 
+    background-color: #FFB74D
+}
+/******************************* Panel lateral ********************************/
+/*Cabecera o identificador*/
+form-sesion .identificacion {
+    background-color: #EF6C00;
+}
+
+/*Cuerpo del panel lateral*/
+form-sesion form {
+    background-color: white;
+}
+/***************** Barra de Herramientas y Pie de Pagina **********************/
+header, .herramientas {
+    background-color: #EF6C00;
+}
+
+comp-footer {
+    background-color: #EF6C00;
+}
+/****************************  ***************************/
+rmpt-selector, p input[type="button"], p input[type="submit"] {
+    background-color: #FFB74D;
+}
+rmpt-selector:hover, p input[type="button"]:hover,
+p input[type="submit"]:hover, rmpt-selector:focus, p input[type="button"]:focus,
+p input[type="submit"]:focus {
+    background-color: #FFB70D
+}
+rmpt-selector:active, p input[type="button"]:active,
+p input[type="submit"]:active {
+    background-color: #4fc3f7;
+}
+rmpt-indicador:before {background-color: #ff9100}
+
+@media screen and (max-width: 900px) {
+    comp-main > div.bloqueo.bloquea {
+        background-color: rgba(0,0,0,0.5);
+        display: block;
+    }
+}
+
+/* Bordes */
+button, rmpt-selector, p input[type="button"],
+p input[type="submit"] {
+    border: none
+}
+input, textarea {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(0,0,0,0.42)
+}
+input:focus, textarea:focus {border-bottom: 1px solid #ff6d00}
+fieldset {border: 1px solid #ff6d00}
+rmpt-selector, p input[type="button"], p input[type="submit"] {
+    border-radius: 2px
+}
+button {border-radius: 50%}
+
+/* Sombras */
+button:active {box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4)}
+rmpt-selector, p input[type="button"], p input[type="submit"] {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5)
+}
+rmpt-selector:active, p input[type="button"]:active,
+p input[type="submit"]:active {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5)
+}
+
+*:focus {outline-style: none}
+a:focus {outline: black dashed thin}
+
+form-sesion a {
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+button {cursor: pointer}
+rmpt-selector, p input[type="button"], p input[type="submit"] {
+    text-transform: uppercase;
+}

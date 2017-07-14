@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!-- Copyright 2017 Gilberto Pacheco Gallegos.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+<html>
+    <head>
+        <title>Estado de la Sesión</title>
+        <meta charset="UTF-8">
+        <link rel="import" href="compro-inicio.html">
+        <link rel="import" href="form-tipo-comida.html">
+        <link rel="import" href="form-rol.html">
+        <link rel="import" href="form-colonia.html">
+        <link rel="import" href="form-servicio.html">
+        <link rel="import" href="form-iniciar-sesion.html">
+        <link rel="import" href="form-registrar-restaurante.html">
+        <link rel="import" href="form-registrar.html">
+    </head>
+    <body>
+        <template>
+            <form action="javascript:;">
+                <input type="hidden" name="accion">
+                <input type="hidden" name="iniciarSesionMuestra" value="true">
+                <input type="hidden" name="terminarSesionMuestra">
+                <input type="hidden" name="navServiciosMuestra">
+                <input type="hidden" name="navTipoComidaMuestra">
+                <input type="hidden" name="navRolMuestra">
+                <input type="hidden" name="navColoniasMuestra">
+                <input type="hidden" name="navMesasMuestra">
+                <input type="hidden" name="navRegistrarResta" value="false">
+                <input type="hidden" name="navRegistrarComen" value="false">
+                <input type="hidden" name="navDescargarApp" value="false">
+                <input type="hidden" name="navAcerca" value="false">
+                <input type="hidden" name="navRestaurantes" value="false">
+                <p class="identificacion">
+                    <output name="sesionId"></output>
+                    <input type="button" name="iniciarSesion" accesskey="S"
+                           value="Iniciar Sesión">
+                    <input type="button" name="terminarSesion" accesskey="T"
+                           value="Terminar Sesión">
+                </p>
+                <ul>
+                    <li><a href="#compro-inicio">Inicio</a></li>
+                    <li id="navRol">
+                        <a href="#form-rol">Roles</a>
+                    </li>
+                    <li id="navTipoComida">
+                        <a href="#form-tipo-comida">Comidas</a>
+                    </li>
+                    <li id="navServicios">
+                        <a href="#form-servicio">Servicios</a>
+                    </li>
+                    <li id="navColonias">
+                        <a href="#form-colonia">Colonias</a>
+                    </li>
+                    <li id="navRegistrarResta">
+                        <a href="#form-registrar-restaurante">Registrar Restaurante</a>
+                    </li>
+                    <li id="navRegistrarComen">
+                        <a href="#form-registrar">Registrar Comensal</a>
+                    </li>
+                    <li id="navDescargarApp">
+                        <a href="#">Descargar App</a>
+                    </li>
+                    <li id="navRestaurantes">
+                        <a href="#">Restaurantes Asociados</a>
+                    </li>
+                    <li id="navRestaurantes">
+                        <a href="#">Promociones</a>
+                    </li>
+                    <li id="navAcerca">
+                        <a href="#">Acerca de JKRAD</a>
+                    </li>
+                    <li id="navRestaurantes">
+                        <a href="#">Mas</a>
+                    </li>
+
+                </ul>
+            </form>
+        </template>
+        <script>
+            "use strict";
+            (function () {
+                let template = elementPrevio();
+                registraElement("form-sesion", class extends HTMLElement {
+                    connectedCallback() {
+                        cargaTemplate(this, template);
+                        let medWeb = new MedWeb(this.querySelector("form"), "ctrlSesion");
+                        medWeb.inicia();
+                        window.addEventListener("recarga", () => {
+                            medWeb.ejecuta("inicia");
+                        });
+                    }
+                });
+            })();
+        </script>
+    </body>
+</html>

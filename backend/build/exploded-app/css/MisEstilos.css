@@ -1,0 +1,116 @@
+@charset "UTF-8";
+body{
+    background-color: #FFB74D;
+}
+/******************************************************************************/
+/*Panel lateral*/
+.mdc-temporary-drawer__header-content{
+    font-size: 18px;
+    background-color:  #EF6C00;
+}
+/*Barra de herramientas*/
+.mdc-toolbar__section{
+    background-color: #EF6C00;
+}
+.mdc-toolbar__row{
+    background-color: #EF6C00;
+}
+.mdc-toolbar__title{
+    color: #000000;
+}
+/******************************************************************************/
+.footer .copyright {
+    line-height: 20px;
+    text-align: center;
+    background-color: #EF6C00;
+    padding: 40px 0;
+
+}
+/******************************************************************************/
+.inputs__link {
+    display: inline-block;
+    height: 60px;
+    line-height: 68px;
+    border-bottom: 4px solid transparent;
+    color: #000000;
+    letter-spacing: 0.3px;
+    font-size: 18px;
+    padding: 0 15px 0 15px;
+    text-decoration: none;
+}
+
+/*Color al pasar sobre un componente*/
+.navigation__link:hover {
+    border-bottom: 4px solid #FFB74D;
+    cursor: pointer;
+}
+/* Componente principal*/
+.dac-header-logo {
+    display: block;
+    font-size: 18px;
+    font-weight: 400;
+    float: left;
+    letter-spacing: .3px;
+    line-height: 36px;
+    opacity: 3;
+    padding: 15px 48px 15px 0;
+}
+/* Color fuente*/
+.dac-header-logo, .dac-header-logo:hover, .dac-header-logo:focus {
+    color: #000000;
+}
+
+/*Color del borde o separador*/
+@media (min-width: 980px) {
+    .dac-header-logo {
+        border-right: 1px solid rgba(0, 0, 0, 0.1);
+    }
+}
+
+.logo{
+    height: 155px;
+    width: 197px;
+}
+
+/**** Mobile layout ****/
+@media (max-width: 900px) {
+    .inputs__link{
+        display: none;
+    }
+    .dac-header-logo{
+        display: none;
+    }
+    .logo{
+        height: 135px;
+        width: 177px;
+    }
+}
+.columnas {
+    display: flex;
+    flex-wrap: wrap
+}
+.columnas > * {margin: 1em}
+.columnas > .crece {flex: 1}
+@media screen and (max-width: 479px) {
+    .columnas {flex-direction: column}
+}
+/******************************************************************************/
+
+.panel {
+    height: 100%;
+    display: flex;
+    flex-direction: column
+}
+.panel > .contenido {
+    flex-grow: 1;
+    overflow: auto
+}
+.panel > .contenido > main {padding: 25px}
+@media screen and (min-width: 648px) {
+    .panel > .contenido > main {
+        width: 950px;
+        margin-left: auto; 
+        margin-right: auto; 
+    }
+}
+/******************************************************************************/

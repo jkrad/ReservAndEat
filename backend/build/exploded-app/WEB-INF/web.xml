@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>
+            com.appspot.reservandeat_171704.backend.seguridad.CtrlInicio
+        </listener-class>
+    </listener>
+        
+    <servlet>
+        <servlet-name>ctrlTipoComida</servlet-name>
+        <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
+        <init-param>
+            <param-name>controlador</param-name>
+            <param-value>com.appspot.reservandeat_171704.backend.CtrlTipoComida</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ctrlColonia</servlet-name>
+        <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
+        <init-param>
+            <param-name>controlador</param-name>
+            <param-value>com.appspot.reservandeat_171704.backend.CtrlColonia</param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>ctrlServicio</servlet-name>
+        <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
+        <init-param>
+            <param-name>controlador</param-name>
+            <param-value>com.appspot.reservandeat_171704.backend.CtrlServicio</param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>ctrlRol</servlet-name>
+        <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
+        <init-param>
+            <param-name>controlador</param-name>
+            <param-value>com.appspot.reservandeat_171704.backend.CtrlRol</param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>ctrlIniciarSesion</servlet-name>
+        <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
+        <init-param>
+            <param-name>controlador</param-name>
+            <param-value>
+                com.appspot.reservandeat_171704.backend.seguridad.CtrlIniciarSesion
+            </param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>ctrlSesion</servlet-name>
+        <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
+        <init-param>
+            <param-name>controlador</param-name>
+            <param-value>
+                com.appspot.reservandeat_171704.backend.seguridad.CtrlSesion
+            </param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>infoDispositivo</servlet-name>
+        <servlet-class>
+            com.appspot.reservandeat_171704.backend.mensajeria.InfoDispositivo
+        </servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>infoSubscripcion</servlet-name>
+        <servlet-class>
+            com.appspot.reservandeat_171704.backend.mensajeria.InfoSubscripcion
+        </servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>infoSincronizacion</servlet-name>
+        <servlet-class>
+            com.appspot.reservandeat_171704.backend.sincronizacion.InfoSincronizacion
+        </servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>ctrlTipoComida</servlet-name>
+        <url-pattern>/ctrlTipoComida</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ctrlColonia</servlet-name>
+        <url-pattern>/ctrlColonia</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ctrlRol</servlet-name>
+        <url-pattern>/ctrlRol</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ctrlServicio</servlet-name>
+        <url-pattern>/ctrlServicio</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ctrlIniciarSesion</servlet-name>
+        <url-pattern>/ctrlIniciarSesion</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ctrlSesion</servlet-name>
+        <url-pattern>/ctrlSesion</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>infoDispositivo</servlet-name>
+        <url-pattern>/infoDispositivo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>infoSubscripcion</servlet-name>
+        <url-pattern>/infoSubscripcion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>infoSincronizacion</servlet-name>
+        <url-pattern>/infoSincronizacion</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>0</session-timeout>
+    </session-config>
+    <mime-mapping>
+        <extension>json</extension>
+        <mime-type>application/manifest+json</mime-type>
+    </mime-mapping>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    <security-constraint>
+        <display-name>Encriptado (Solo con certificados https)</display-name>
+        <web-resource-collection>
+            <web-resource-name>Todas las url</web-resource-name>
+            <description>Representa a todas las url</description>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <description>Encriptado</description>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+</web-app>

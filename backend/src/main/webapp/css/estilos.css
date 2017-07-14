@@ -1,0 +1,160 @@
+/* Copyright 2017 Gilberto Pacheco Gallegos.
+
+/*  Created on : 18/05/2017, 12:35:48 AM
+    Author     : Gilberto Pacheco Gallegos */
+@CHARSET "UTF-8";
+
+/***************** Barra de Herramientas y Pie de Pagina **********************/
+header, .herramientas {
+    padding: 0 0.5em;
+    align-items: center;
+    flex-wrap: wrap;
+}
+header h1, .herramientas h1 {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 1em auto 1em 0.5em
+}
+header > * {
+    vertical-align: middle
+}
+header span {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.5em
+}
+header span * {
+    vertical-align: middle
+}
+header [type='search'] {
+    width: 7em
+}
+
+.panel {
+    height: 100%;
+    display: flex;
+    flex-direction: column
+}
+.panel > .contenido {
+    flex-grow: 1;
+    overflow: auto
+}
+.panel > .contenido > main {padding: 25px}
+@media screen and (min-width: 648px) {
+    .panel > .contenido > main {
+        width: 950px;
+        margin-left: auto; 
+        margin-right: auto; 
+    }
+}
+.multipanel {
+    display: block;
+    height: 100%
+}
+.multipanel form {
+    display: flex;
+    flex-direction: column;
+    height: 100%
+}
+.imagen {text-align: center}
+.imagen img {max-width: 100%}
+.columnas {
+    display: flex;
+    flex-wrap: wrap
+}
+.columnas > * {margin: 1em}
+.columnas > .crece {flex: 1}
+@media screen and (max-width: 479px) {
+    .columnas {flex-direction: column}
+}
+p label {display: block}
+label > span, p [name$="Error"] {display: block}
+p input {width: 100%}
+button {
+    margin: 0.5em;
+    padding: 0;
+}
+button:before {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+button.agregar:before {content: "add"}
+button.buscar:before {content: "search"}
+button.atras {order: -1}
+button.atras:before {content: "arrow_back"}
+button.cerrar {order: -1}
+button.cerrar:before {content: "close"}
+button.eliminar:before {content: "delete_forever"}
+button.guardar:before {content: "save"}
+button.pagar:before {content: "payment"}
+button.cancelar:before {content: "cancel"}
+button.comprar:before {content: "add_shopping_cart"}
+rmpt-selector, p input[type="button"], p input[type="submit"] {
+    width: auto;
+    text-align: center;
+    padding: 1em;
+}
+input[type="file"] {
+    position: absolute;
+    top: -300em
+}
+
+/**/
+form-sesion .identificacion {
+    margin: 0;
+    padding: 0.4em;
+    height: 4em;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0
+}
+form-sesion .identificacion > *:first-child {margin-top: auto}
+form-sesion ul {
+    padding: 0;
+    list-style-type: none
+}
+form-sesion a {
+    display: block;
+    padding: 1em;
+}
+
+form-sesion a:active {background-color: #f5f5f5}
+@media screen and (max-width: 839px) {
+    form-sesion {position: absolute}
+    form-sesion form {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        direction: rtl;
+        -webkit-order: 1;
+        -ms-flex-order: 1;
+        order: 1;
+        width: 50%;
+        transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+            width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 2
+    }
+    form-sesion.abierta {position: static}
+    form-sesion.abierta form {display: block}
+}

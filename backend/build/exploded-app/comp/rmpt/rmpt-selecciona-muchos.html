@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--
+Copyright 2017 Gilberto Pacheco Gallegos.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Campo para Selección Múltiple</title>
+    <link rel="import" href="rmpt-lista.html">
+    <link rel="import" href="rmpt-selector.html">
+    <style>
+      rmpt-selecciona-muchos [type="search"] {width: 100%}
+      rmpt-selecciona-muchos .filtro {display: none}
+      rmpt-selecciona-muchos:hover .filtro {display: block}
+    </style>
+  </head>
+  <body>
+    <template>
+      <div class="valores"></div>
+      <rmpt-lista class="seleccion"></rmpt-lista>
+      <rmpt-selector></rmpt-selector>
+      <div class="filtro">
+        <input type="search" placeholder="Buscar">
+        <rmpt-lista class="opciones seleccionable"></rmpt-lista>
+      </div>
+    </template>
+    <script>
+      "use strict";
+      (function () {
+        let template = elementPrevio();
+        registraElement("rmpt-selecciona-muchos", class extends HTMLElement {
+          connectedCallback() {
+            cargaTemplate(this, template);
+            let valores = this.querySelector(".valores");
+            let listaSeleccion = this.querySelector(".seleccion");
+            let listaOpciones = this.querySelector(".opciones");
+            listaOpciones.setAttribute("vacio", this.getAttribute("vacio"));
+            listaOpciones.setAttribute("alt", this.getAttribute("alt"));
+            let mapRenglones = {};
+            let _value = [];
+            let _opciones = [];
+            listaSeleccion
+                .setAttribute("alt", this.getAttribute("sinseleccion"));
+            listaSeleccion.forEach = elementRenglon => {
+              elementRenglon.boton.addEventListener("click", evt => {
+                let id = elementRenglon.value.detalleId;
+                let valor = this.value;
+                let index = valor.indexOf(id);
+                if (index >= 0) {
+                  valor.splice(index, 1);
+                  this.value = valor;
+                }
+              });
+            };
+            listaOpciones.forEach = elementRenglon => {
+              setVisible(elementRenglon.boton, false);
+              elementRenglon.addEventListener("click", evt => {
+                let id = elementRenglon.value.detalleId;
+                let valor = this.value;
+                if (valor.indexOf(id) < 0) {
+                  valor.push(id);
+                  this.value = valor;
+                }
+              });
+            };
+            Object.defineProperties(this, {
+              value: {
+                enumerable: true,
+                get: function () {
+                  // Devuelve una copia del contenido.
+                  return _value.slice();
+                },
+                set: function (val) {
+                  _value = arr(val);
+                  listaSeleccion.value =
+                      _value.map(id => mapRenglones[id] || {});
+                  borraTodosLosElementos(valores);
+                  if (this.id) {
+                    let id = this.id;
+                    _value.forEach(valor => {
+                      let input = document.createElement("input");
+                      input.type = "hidden";
+                      input.name = id;
+                      input.value = valor;
+                      valores.appendChild(input);
+                    });
+                  }
+                }
+              },
+              opciones: {
+                enumerable: true,
+                get: function () {
+                  return _opciones;
+                },
+                set: function (opcs) {
+                  _opciones = arr(opcs);
+                  listaOpciones.value = _opciones;
+                  mapRenglones = listaOpciones.creaMapRenglones();
+                  this.value = _value;
+                }
+              }
+            });
+            listaOpciones.filtro = this.querySelector("input[type='search']");
+            listaSeleccion.value = [];
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
