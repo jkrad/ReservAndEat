@@ -29,7 +29,7 @@ public class Restaurante {
     private List<Key> roles = new ArrayList<>();
     private String upperKey;
 
-    private Key tipoComida;
+    private Key comida;
 
     public Long getKey() {
         return key;
@@ -95,14 +95,11 @@ public class Restaurante {
         this.upperKey = upperKey;
     }
 
-    public Key getTipoComida() {
-        return tipoComida;
+    public Key getComida() {
+        return comida;
     }
 
-    public void setTipoComida(Key tipoComida) {
-        this.tipoComida = tipoComida;
+    public void setComida(Key comida) {
+        this.comida = comida;
     }
-    
-    
-
 }
