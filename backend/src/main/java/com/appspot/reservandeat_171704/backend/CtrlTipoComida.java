@@ -1,18 +1,3 @@
-/*
- * Copyright 2017 Gilberto Pacheco Gallegos.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.appspot.reservandeat_171704.backend;
 
 import com.appspot.reservandeat_171704.ModeloFormTipoComida;
@@ -28,6 +13,7 @@ import net.reservandeat_171704.si.backend.CtrlAbcHttp;
 import java8.util.function.Consumer;
 import java8.util.stream.Stream;
 
+import static com.appspot.reservandeat_171704.backend.seguridad.CtrlInicio.ADMINISTRADOR;
 import static com.google.appengine.api.datastore.Entity.KEY_RESERVED_PROPERTY;
 import static com.google.appengine.api.datastore.Query.CompositeFilterOperator.and;
 import static com.google.appengine.api.datastore.Query.FilterOperator.EQUAL;
@@ -45,7 +31,7 @@ public class CtrlTipoComida
 
     public CtrlTipoComida() {
         super("TipoComida Nueva", new Datastore<TipoComida>() {
-        });
+        }, ADMINISTRADOR);
     }
 
     @Override
@@ -66,7 +52,6 @@ public class CtrlTipoComida
             public void accept(TipoComida modelo) {
                 validaModeloForm(modeloForm, modelo);
                 modelo.setNombre(modeloForm.getNombre());
-                modelo.setUpperNombre(UtilBase.toUpperCase(modelo.getNombre()));
             }
         });
     }
@@ -81,8 +66,7 @@ public class CtrlTipoComida
         });
     }
 
-    private void validaModeloForm(ModeloFormTipoComida modeloForm,
-            TipoComida modelo) {
+    private void validaModeloForm(ModeloFormTipoComida modeloForm, TipoComida modelo) {
         if (isTrue(modeloForm.getNuevo())) {
             if (new Consulta<TipoComida>() {
             }.setFilter(

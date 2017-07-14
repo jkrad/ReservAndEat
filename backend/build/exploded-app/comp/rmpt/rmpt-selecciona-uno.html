@@ -1,100 +1,88 @@
 <!DOCTYPE html>
-<!-- Copyright 2017 Gilberto Pacheco Gallegos.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License. -->
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Campo para Selección Única</title>
-    <link rel="import" href="rmpt-selector.html">
-    <link rel="import" href="rmpt-lista.html">
-    <link rel="import" href="rmpt-selector.html">
-    <style>
-      rmpt-selecciona-uno [type="search"] {width: 100%}
-      rmpt-selecciona-uno .filtro {display: none}
-      rmpt-selecciona-uno:hover .filtro {display: block}
-    </style>
-  </head>
-  <body>
-    <template>
-      <input type="hidden">
-      <rmpt-lista class="seleccion"></rmpt-lista>
-      <rmpt-selector></rmpt-selector>
-      <div class="filtro">
-        <input type="search" placeholder="Buscar">
-        <rmpt-lista class="opciones seleccionable"></rmpt-lista>
-      </div>
-    </template>
-    <script>
-      "use strict";
-      (function () {
-        let template = elementPrevio();
-        registraElement("rmpt-selecciona-uno", class extends HTMLElement {
-          connectedCallback() {
-            cargaTemplate(this, template);
-            let hidden = this.querySelector("input[type='hidden']");
-            let listaSeleccion = this.querySelector(".seleccion");
-            let listaOpciones = this.querySelector(".opciones");
-            listaOpciones.setAttribute("vacio", this.getAttribute("vacio"));
-            listaOpciones.setAttribute("alt", this.getAttribute("alt"));
-            let _value = null;
-            let _opciones = [];
-            let mapRenglones = {};
-            listaSeleccion
-                .setAttribute("alt", this.getAttribute("sinseleccion"));
-            listaSeleccion.forEach = elementRenglon => {
-              elementRenglon.boton.addEventListener("click", evt => {
-                this.value = null;
-              });
-            };
-            listaOpciones.forEach = elementRenglon => {
-              elementRenglon.addEventListener("click",
-                  evt => this.value = elementRenglon.value.detalleId);
-              setVisible(elementRenglon.boton, false);
-            };
-            if (this.id) {
-              hidden.name = this.id;
-            }
-            Object.defineProperties(this, {
-              value: {
-                enumerable: true,
-                get: function () {
-                  return _value;
-                },
-                set: function (val) {
-                  _value = texto(val);
-                  hidden.value = _value;
-                  listaSeleccion.value = _value ? [mapRenglones[_value]] : [];
-                }
-              },
-              opciones: {
-                enumerable: true,
-                get: function () {
-                  return _opciones;
-                },
-                set: function (opcs) {
-                  _opciones = arr(opcs);
-                  listaOpciones.value = _opciones;
-                  mapRenglones = listaOpciones.creaMapRenglones();
-                  this.value = _value;
-                }
-              }
-            });
-            listaOpciones.filtro = this.querySelector("input[type='search']");
-            listaSeleccion.value = [];
-          }
-        });
-      })();
-    </script>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Campo para Selección Única</title>
+        <link rel="import" href="rmpt-selector.html">
+        <link rel="import" href="rmpt-lista.html">
+        <link rel="import" href="rmpt-selector.html">
+        <style>
+            rmpt-selecciona-uno [type="search"] {width: 100%}
+            rmpt-selecciona-uno .filtro {display: none}
+            rmpt-selecciona-uno:hover .filtro {display: block}
+        </style>
+    </head>
+    <body>
+        <template>
+            <input type="hidden">
+            <rmpt-lista class="seleccion"></rmpt-lista>
+            <rmpt-selector></rmpt-selector>
+            <div class="filtro">
+                <input type="search" placeholder="Buscar">
+                <rmpt-lista class="opciones seleccionable"></rmpt-lista>
+            </div>
+        </template>
+        <script>
+            "use strict";
+            (function () {
+                let template = elementPrevio();
+                registraElement("rmpt-selecciona-uno", class extends HTMLElement {
+                    connectedCallback() {
+                        cargaTemplate(this, template);
+                        let hidden = this.querySelector("input[type='hidden']");
+                        let listaSeleccion = this.querySelector(".seleccion");
+                        let listaOpciones = this.querySelector(".opciones");
+                        listaOpciones.setAttribute("vacio", this.getAttribute("vacio"));
+                        listaOpciones.setAttribute("alt", this.getAttribute("alt"));
+                        let _value = null;
+                        let _opciones = [];
+                        let mapRenglones = {};
+                        listaSeleccion
+                                .setAttribute("alt", this.getAttribute("sinseleccion"));
+                        listaSeleccion.forEach = elementRenglon => {
+                            elementRenglon.boton.addEventListener("click", evt => {
+                                this.value = null;
+                            });
+                        };
+                        listaOpciones.forEach = elementRenglon => {
+                            elementRenglon.addEventListener("click",
+                                    evt => this.value = elementRenglon.value.detalleId);
+                            setVisible(elementRenglon.boton, false);
+                        };
+                        if (this.id) {
+                            hidden.name = this.id;
+                        }
+                        Object.defineProperties(this, {
+                            value: {
+                                enumerable: true,
+                                get: function () {
+                                    return _value;
+                                },
+                                set: function (val) {
+                                    _value = texto(val);
+                                    hidden.value = _value;
+                                    listaSeleccion.value = _value ? [mapRenglones[_value]] : [];
+                                }
+                            },
+                            opciones: {
+                                enumerable: true,
+                                get: function () {
+                                    return _opciones;
+                                },
+                                set: function (opcs) {
+                                    _opciones = arr(opcs);
+                                    listaOpciones.value = _opciones;
+                                    mapRenglones = listaOpciones.creaMapRenglones();
+                                    this.value = _value;
+                                }
+                            }
+                        });
+                        listaOpciones.filtro = this.querySelector("input[type='search']");
+                        listaSeleccion.value = [];
+                    }
+                });
+            })();
+        </script>
+    </body>
 </html>

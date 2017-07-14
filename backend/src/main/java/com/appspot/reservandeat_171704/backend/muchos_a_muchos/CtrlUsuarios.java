@@ -17,7 +17,6 @@ import java8.util.function.Consumer;
 import java8.util.stream.Collectors;
 import java8.util.stream.Stream;
 
-import static com.appspot.reservandeat_171704.backend.seguridad.CtrlInicio.ADMINISTRADOR;
 import static com.appspot.reservandeat_171704.backend.seguridad.UtilSeguridad.encripta;
 import static com.google.appengine.api.datastore.Entity.KEY_RESERVED_PROPERTY;
 import static com.google.appengine.api.datastore.Query.FilterOperator.EQUAL;
@@ -35,7 +34,7 @@ public class CtrlUsuarios
 
     public CtrlUsuarios() {
         super("Usuario Nuevo", new Datastore<Usuario>() {
-        }, ADMINISTRADOR);
+        });
     }
 
     @Override
@@ -61,15 +60,15 @@ public class CtrlUsuarios
                 && !Objects.equals(contrasena, modeloForm.getConfirma())) {
             throw new RuntimeException("Las Contraseñas no coinciden.");
         } else if (isPresent(contrasena)
-                && (contrasena.length() < 5 || contrasena.length() > 25)) {
+                && (contrasena.length() < 6 || contrasena.length() > 12)) {
             throw new RuntimeException(
-                    "La Contraseña debe tener de 5 a 25 caracteres.");
+                    "La Contraseña debe tener de 6 a 12 caracteres.");
         } else if (isTrue(modeloForm.getNuevo()) && new Consulta<Usuario>() {
         }
                 .setFilter(new FilterPredicate(KEY_RESERVED_PROPERTY, EQUAL,
                         getKey(Usuario.class, id))).lista().count() > 0) {
             throw new RuntimeException(
-                    "El identificador de usuario ya está reservado.");
+                    "El nombre de usuario ya está reservado.");
         } else {
             getModelo().ifPresent(new Consumer<Usuario>() {
                 @Override
@@ -81,6 +80,7 @@ public class CtrlUsuarios
                         modelo.setContrasena(encripta(contrasena));
                     }
                     modelo.setNombre(modeloForm.getNombre());
+                    modelo.setTelefono(modeloForm.getTelefono());
                     modelo.setRoles(adaptaStrings(modeloForm.getRoles()));
                     modelo.setUpperKey(toUpperCase(modelo.getKey()));
                 }
@@ -101,6 +101,7 @@ public class CtrlUsuarios
                 modeloForm.setConfirmaObligatoriaMuestra(modeloForm.getNuevo());
                 modeloForm.setConfirma("");
                 modeloForm.setNombre(texto(modelo.getNombre()));
+                modeloForm.setTelefono(texto(modelo.getTelefono()));
                 modeloForm.setRoles(adaptaKeys(modelo.getRoles()));
             }
         });

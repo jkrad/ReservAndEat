@@ -45,6 +45,17 @@
     </servlet>
     
     <servlet>
+        <servlet-name>ctrlRestaurantes</servlet-name>
+        <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
+        <init-param>
+            <param-name>controlador</param-name>
+            <param-value>
+                com.appspot.reservandeat_171704.backend.muchos_a_uno.CtrlRestaurantes
+            </param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet>
         <servlet-name>ctrlIniciarSesion</servlet-name>
         <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
         <init-param>

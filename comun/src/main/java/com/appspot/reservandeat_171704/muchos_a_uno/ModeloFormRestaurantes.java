@@ -6,19 +6,19 @@ import net.reservandeat_171704.si.Renglon;
 
 import java.util.List;
 
-/**
- * @author Gilberto Pacheco Gallegos
- */
+
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class ModeloFormRestaurantes extends ModeloFormAbc {
 
     private String nombre;
     private String nombreError;
     private String telefono;
+    private String telefonoErro;
     private String correo;
+    private String correoError;
     private String contrasena;
-    private String tipoComida;
-    private String tipoComidaError;
+    private String comida;
+    private String comidaError;
     private List<Renglon> tipoComidaOpciones;
 
     public String getNombre() {
@@ -45,12 +45,28 @@ public class ModeloFormRestaurantes extends ModeloFormAbc {
         this.telefono = telefono;
     }
 
+    public String getTelefonoErro() {
+        return telefonoErro;
+    }
+
+    public void setTelefonoErro(String telefonoErro) {
+        this.telefonoErro = telefonoErro;
+    }
+
     public String getCorreo() {
         return correo;
     }
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getCorreoError() {
+        return correoError;
+    }
+
+    public void setCorreoError(String correoError) {
+        this.correoError = correoError;
     }
 
     public String getContrasena() {
@@ -61,20 +77,20 @@ public class ModeloFormRestaurantes extends ModeloFormAbc {
         this.contrasena = contrasena;
     }
 
-    public String getTipoComida() {
-        return tipoComida;
+    public String getComida() {
+        return comida;
     }
 
-    public void setTipoComida(String tipoComida) {
-        this.tipoComida = tipoComida;
+    public void setComida(String comida) {
+        this.comida = comida;
     }
 
-    public String getTipoComidaError() {
-        return tipoComidaError;
+    public String getComidaError() {
+        return comidaError;
     }
 
-    public void setTipoComidaError(String tipoComidaError) {
-        this.tipoComidaError = tipoComidaError;
+    public void setComidaError(String comidaError) {
+        this.comidaError = comidaError;
     }
 
     public List<Renglon> getTipoComidaOpciones() {
@@ -84,5 +100,4 @@ public class ModeloFormRestaurantes extends ModeloFormAbc {
     public void setTipoComidaOpciones(List<Renglon> tipoComidaOpciones) {
         this.tipoComidaOpciones = tipoComidaOpciones;
     }
-    
 }

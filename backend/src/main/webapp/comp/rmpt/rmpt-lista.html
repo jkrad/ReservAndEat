@@ -1,117 +1,103 @@
 <!DOCTYPE html>
-<!--
-Copyright 2017 Gilberto Pacheco Gallegos.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Lista de renglones.</title>
-    <link rel="import" href="rmpt-renglon.html">
-    <style>
-      rmpt-lista {
-        display: flex;
-        flex-direction: column
-      }
-    </style>
-  </head>
-  <body>
-    <script>
-      "use strict";
-      (function () {
-        registraElement("rmpt-lista", class extends HTMLElement {
-          constructor() {
-            super();
-            let _value = [];
-            let _filtro = null;
-            Object.defineProperties(this, {
-              value: {
-                enumerable: true,
-                get: function () {
-                  return _value;
-                },
-                set: function (val) {
-                  _value = arr(val).sort((r1, r2) => {
-                    let t1 = r1 ? texto(r1.texto1).toUpperCase() : "";
-                    let t2 = r2 ? texto(r2.texto1).toUpperCase() : "";
-                    if (t1 > t2) {
-                      return 1;
-                    } else if (t1 < t2) {
-                      return -1;
-                    } else {
-                      return 0;
-                    }
-                  });
-                  this.filtra();
-                }
-              },
-              filtro: {
-                enumerable: true,
-                get: function () {
-                  return _filtro;
-                },
-                set: function (fil) {
-                  _filtro = fil;
-                  if (fil) {
-                    fil.addEventListener("input", () => this.filtra());
-                  }
-                  this.filtra();
-                }
-              }
-            });
-          }
-          filtra() {
-            let lista = this.filtraRenglones();
-            borraTodosLosElementos(this);
-            if (lista.length === 0) {
-              let img = document.createElement("img");
-              img.src = this.getAttribute("vacio");
-              img.alt = this.getAttribute("alt");
-              img.style.marginWidth = "100%";
-              let div = document.createElement("div");
-              div.className = "imagen";
-              div.appendChild(img);
-              this.appendChild(div);
-            } else {
-              lista.forEach(renglon => {
-                let elementRenglon = document.createElement("rmpt-renglon");
-                elementRenglon.value = renglon;
-                elementRenglon.forEach = this.forEach;
-                this.appendChild(elementRenglon);
-              });
+    <head>
+        <meta charset="UTF-8">
+        <title>Lista de renglones.</title>
+        <link rel="import" href="rmpt-renglon.html">
+        <style>
+            rmpt-lista {
+                display: flex;
+                flex-direction: column
             }
-          }
-          filtraRenglones() {
-            let lista = this.value;
-            let filtro =
-                this.filtro ? this.filtro.value.trim().toUpperCase() : null;
-            return filtro && lista.length > 0
-                ? lista.filter(renglon => (renglon.texto1
-                      && renglon.texto1.toUpperCase().indexOf(filtro) >= 0)
-                      || (renglon.texto2
-                          && renglon.texto2.toUpperCase().indexOf(filtro)
-                          >= 0))
-                : lista;
-          }
-          creaMapRenglones() {
-            return this.value.reduce((map, renglon) => {
-              map[renglon.detalleId] = renglon;
-              return map;
-            }, {});
-          }
-        });
-      })();
-    </script>
-  </body>
+        </style>
+    </head>
+    <body>
+        <script>
+            "use strict";
+            (function () {
+                registraElement("rmpt-lista", class extends HTMLElement {
+                    constructor() {
+                        super();
+                        let _value = [];
+                        let _filtro = null;
+                        Object.defineProperties(this, {
+                            value: {
+                                enumerable: true,
+                                get: function () {
+                                    return _value;
+                                },
+                                set: function (val) {
+                                    _value = arr(val).sort((r1, r2) => {
+                                        let t1 = r1 ? texto(r1.texto1).toUpperCase() : "";
+                                        let t2 = r2 ? texto(r2.texto1).toUpperCase() : "";
+                                        if (t1 > t2) {
+                                            return 1;
+                                        } else if (t1 < t2) {
+                                            return -1;
+                                        } else {
+                                            return 0;
+                                        }
+                                    });
+                                    this.filtra();
+                                }
+                            },
+                            filtro: {
+                                enumerable: true,
+                                get: function () {
+                                    return _filtro;
+                                },
+                                set: function (fil) {
+                                    _filtro = fil;
+                                    if (fil) {
+                                        fil.addEventListener("input", () => this.filtra());
+                                    }
+                                    this.filtra();
+                                }
+                            }
+                        });
+                    }
+                    filtra() {
+                        let lista = this.filtraRenglones();
+                        borraTodosLosElementos(this);
+                        if (lista.length === 0) {
+                            let img = document.createElement("img");
+                            img.src = this.getAttribute("vacio");
+                            img.alt = this.getAttribute("alt");
+                            img.style.marginWidth = "100%";
+                            let div = document.createElement("div");
+                            div.className = "imagen";
+                            div.appendChild(img);
+                            this.appendChild(div);
+                        } else {
+                            lista.forEach(renglon => {
+                                let elementRenglon = document.createElement("rmpt-renglon");
+                                elementRenglon.value = renglon;
+                                elementRenglon.forEach = this.forEach;
+                                this.appendChild(elementRenglon);
+                            });
+                        }
+                    }
+                    filtraRenglones() {
+                        let lista = this.value;
+                        let filtro =
+                                this.filtro ? this.filtro.value.trim().toUpperCase() : null;
+                        return filtro && lista.length > 0
+                                ? lista.filter(renglon => (renglon.texto1
+                                            && renglon.texto1.toUpperCase().indexOf(filtro) >= 0)
+                                            || (renglon.texto2
+                                                    && renglon.texto2.toUpperCase().indexOf(filtro)
+                                                    >= 0))
+                                : lista;
+                    }
+                    creaMapRenglones() {
+                        return this.value.reduce((map, renglon) => {
+                            map[renglon.detalleId] = renglon;
+                            return map;
+                        }, {});
+                    }
+                });
+            })();
+        </script>
+    </body>
 </html>

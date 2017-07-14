@@ -5,9 +5,6 @@ import net.reservandeat_171704.si.Renglon;
 
 import java.util.List;
 
-/**
- * @author Gilberto Pacheco Gallegos
- */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class ModeloFormUsuarios extends ModeloFormAbc {
 
@@ -22,6 +19,8 @@ public class ModeloFormUsuarios extends ModeloFormAbc {
     private String confirmaError;
     private String debeConfirmar;
     private String debeConfirmarError;
+    private String telefono;
+    private String telefonoError;
     private String nombre;
     private String nombreError;
     private List<String> roles;
@@ -155,5 +154,21 @@ public class ModeloFormUsuarios extends ModeloFormAbc {
 
     public void setRolesOpciones(List<Renglon> rolesOpciones) {
         this.rolesOpciones = rolesOpciones;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getTelefonoError() {
+        return telefonoError;
+    }
+
+    public void setTelefonoError(String telefonoError) {
+        this.telefonoError = telefonoError;
     }
 }

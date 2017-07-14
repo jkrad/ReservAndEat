@@ -18,7 +18,6 @@ import java8.util.function.Consumer;
 import java8.util.stream.Collectors;
 import java8.util.stream.Stream;
 
-import static com.appspot.reservandeat_171704.backend.seguridad.CtrlInicio.GERENTE;
 import static net.reservandeat_171704.base.UtilBase.texto;
 
 import static net.reservandeat_171704.datastore.Datastore.adaptaKey;
@@ -29,7 +28,7 @@ public class CtrlRestaurantes
 
     public CtrlRestaurantes() {
         super("Restaurante Nuevo", new Datastore<Restaurante>() {
-        }, GERENTE);
+        });
     }
 
     @Override
@@ -49,7 +48,7 @@ public class CtrlRestaurantes
             @Override
             public void accept(Restaurante modelo) {
                 try {
-                    modelo.setTipoComida(adaptaString(modeloForm.getTipoComida()));
+                    modelo.setComida(adaptaString(modeloForm.getComida()));
                     modelo.setNombre(modeloForm.getNombre());
                 } finally {
                     // Esto es para que no descarte la imagen capturada cuando hay error.
@@ -65,9 +64,9 @@ public class CtrlRestaurantes
         getModelo().ifPresent(new Consumer<Restaurante>() {
             @Override
             public void accept(Restaurante modelo) {
-
                 modeloForm.setNombre(texto(modelo.getNombre()));
-                modeloForm.setTipoComida(adaptaKey(modelo.getTipoComida()));
+                modeloForm.setTelefono(texto(modelo.getTelefono()));
+                modeloForm.setComida(adaptaKey(modelo.getComida()));
             }
         });
     }

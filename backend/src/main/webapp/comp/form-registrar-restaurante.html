@@ -2,11 +2,9 @@
 <html>
     <head>
         <title>Restaurantes</title>
-        <link rel="import" href="compro-panel-maestro.html">
-        <link rel="import" href="rmpt/rmpt-herramientas-detalle.html">
-        <link rel="import" href="rmpt/rmpt-indicador.html">
         <link rel="import" href="rmpt/rmpt-selector.html">
         <link rel="import" href="rmpt/rmpt-selecciona-uno.html">
+        <link rel="import" href="rmpt/rmpt-lista.html">
         <link rel="import" href="rmpt/rmpt-indica-campos-obligatorios.html">
         <meta charset="UTF-8">
         <style>
@@ -40,42 +38,42 @@
                                     <p>
                                         <label accesskey="I">
                                             <span class="flotante">Nombre del Restaurante *</span>
-                                            <input name="id" type="text">
+                                            <input name="nombre" type="text">
                                         </label>
-                                        <output name="idError"></output>
+                                        <output name="nombreError"></output>
 
                                         <label accesskey="I">
                                             <span class="flotante">Telefono *</span>
-                                            <input name="id" type="tel">
+                                            <input name="telefono" type="tel">
                                         </label>
-                                        <output name="idError"></output>
+                                        <output name="telefonoError"></output>
                                     </p>
                                     <p>
                                         <label accesskey="I">
                                             <span class="flotante">Puesto del Encargado *</span>
-                                            <input name="id" type="text">
+                                            <input name="puesto" type="text">
                                         </label>
-                                        <output name="idError"></output>
+                                        <output name="puestoError"></output>
                                     </p>
                                     <p>
                                         <label accesskey="I">
                                             <span class="flotante">Correo Electronico *</span>
-                                            <input name="id" type="email">
+                                            <input name="correo" type="email">
                                         </label>
-                                        <output name="idError"></output>
+                                        <output name="correoError"></output>
                                     </p>
                                     <p>
                                         <label accesskey="I">
                                             <span class="flotante">Contraseña *</span>
-                                            <input name="id" type="password">
+                                            <input name="contrasena" type="password">
                                         </label>
-                                        <output name="idError"></output>
+                                        <output name="contrasenaError"></output>
                                     </p>
                                     <p>
                                     <fieldset>
                                         <legend>Tipo de Comida *</legend>
-                                        <output name="categoriaError"></output>
-                                        <rmpt-selecciona-uno id="tipoComida" vacio="img/vacio.png"
+                                        <output name="comidaError"></output>
+                                        <rmpt-selecciona-uno id="comida" vacio="img/vacio.png"
                                                              alt="No hay datos registrados."
                                                              sinseleccion="Sin selección."></rmpt-selecciona-uno>
                                     </fieldset>
@@ -224,7 +222,9 @@
                                 </div>
                                 <div class="mdl-card__actions mdl-card--border">
                                     <p>
-                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Aceptar</button>
+
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" name="agregar" type="button">Aceptar</button>
+
                                         <button name="cerrar" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="button"
                                                 >Cancelar</button>
                                     </p>
@@ -246,8 +246,10 @@
                 let template = elementPrevio();
                 registraElement("form-registrar-restaurante", class extends HTMLElement {
                     connectedCallback() {
-                        this.classList.add("multipanel");
+                        this.classList.add("panel");
                         cargaTemplate(this, template);
+                        let lista = this.querySelector("rmpt-lista");
+                        lista.forEach = renglon => lanzaDetalle(this, renglon);
                         new MedWeb(this.querySelector("form"), "ctrlRestaurantes").inicia();
                     }
                 });

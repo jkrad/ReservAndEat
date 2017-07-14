@@ -20,7 +20,8 @@ public class Usuario {
     private String contrasena; //Contraseña del usuario
     @NotNull
     @Size(min = 1, max = 255)
-    private String nombre;
+    private String nombre;//Nombre del usuario
+    private String telefono;
     private List<Key> roles = new ArrayList<>();
     private String upperKey;
 
@@ -62,5 +63,13 @@ public class Usuario {
 
     public void setUpperKey(String upperKey) {
         this.upperKey = upperKey;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }
