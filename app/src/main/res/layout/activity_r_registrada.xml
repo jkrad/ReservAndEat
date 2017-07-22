@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.appspot.reservandeat_171704.reservandeat.R_registrada">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reservacion \nRegistrada!!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="61dp"
+        android:layout_marginTop="17dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/textView4"
+        android:layout_alignEnd="@+id/textView4"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="N° de reservacion: FolioBD"
+        tools:layout_editor_absoluteY="214dp"
+        tools:layout_editor_absoluteX="73dp"
+        android:layout_marginTop="40dp"
+        tools:ignore="HardcodedText"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre de quien reserva: NombreBD"
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="262dp"
+        android:layout_marginTop="44dp"
+        tools:ignore="HardcodedText"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="48dp"
+        android:layout_marginStart="48dp" />
+
+    <TextView
+        android:id="@+id/tvInfoRes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="320dp"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="63dp"
+        tools:ignore="HardcodedText"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
+
+    <Button
+        android:id="@+id/btnMenu"
+        android:layout_width="152dp"
+        android:layout_height="42dp"
+        android:text="Menu principal"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="391dp"
+        android:layout_marginTop="63dp"
+        tools:ignore="HardcodedText"
+        android:layout_below="@+id/tvInfoRes"
+        android:layout_alignLeft="@+id/tvInfoRes"
+        android:layout_alignStart="@+id/tvInfoRes" />
+
+
+</RelativeLayout>
