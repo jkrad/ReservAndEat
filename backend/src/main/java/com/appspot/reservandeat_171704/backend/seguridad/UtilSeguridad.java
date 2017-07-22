@@ -1,6 +1,6 @@
 package com.appspot.reservandeat_171704.backend.seguridad;
 
-import net.reservandeat_171704.si.Sesion;
+import net.ramptors.si.Sesion;
 
 import org.bouncycastle.util.encoders.Base64;
 
@@ -21,8 +21,8 @@ import java8.util.function.Predicate;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Arrays.asList;
-import static net.reservandeat_171704.base.UtilBase.isNullOrEmpty;
-import static net.reservandeat_171704.base.UtilBase.isPresent;
+import static net.ramptors.base.UtilBase.isNullOrEmpty;
+import static net.ramptors.base.UtilBase.isPresent;
 
 public class UtilSeguridad {
 

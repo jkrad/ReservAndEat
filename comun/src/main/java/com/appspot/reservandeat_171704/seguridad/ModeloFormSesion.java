@@ -1,10 +1,7 @@
 package com.appspot.reservandeat_171704.seguridad;
 
-import net.reservandeat_171704.si.ModeloForm;
+import net.ramptors.si.ModeloForm;
 
-/**
- * @author Gilberto Pacheco Gallegos
- */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class ModeloFormSesion extends ModeloForm {
 
@@ -22,7 +19,6 @@ public class ModeloFormSesion extends ModeloForm {
     private String navAcerca;
     private String navRestaurantes;
     
-
     public String getSesionId() {
         return sesionId;
     }
@@ -126,6 +122,4 @@ public class ModeloFormSesion extends ModeloForm {
     public void setNavRestaurantes(String navRestaurantes) {
         this.navRestaurantes = navRestaurantes;
     }
-    
-    
 }

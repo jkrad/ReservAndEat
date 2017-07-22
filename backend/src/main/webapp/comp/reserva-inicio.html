@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Página de inicio</title>
+        <meta charset="UTF-8">
+        <link rel="import" href="rmpt/rmpt-boton-menu.html">
+        <link rel="import" href="reserva-footer.html">
+    </head>
+    <body>
+        <template>
+            <header>
+                <rmpt-boton-menu></rmpt-boton-menu>
+                <h1>Reserv And Eat</h1>
+            </header>
+            <div class="contenido">
+                <main role="main">
+                    <div class="columnas">
+                        <div class="crece">
+                            <div >
+                                <div class="imagen">
+                                    <img class="phone" src="img/template/device_pic.png" style="margin-top: 50px;margin-left: 100px;" alt="Img" align="left" 
+                                         srcset="img/device_pic.png 1500w"/>
+                                </div>
+                            </div>
+                            <br><br><br><br><br><br><br>
+
+                            <div class="col-md-6 col-md-offset-1 texto-centrado" style="margin-top: 20px;">
+                                <div class="description">
+                                    <h2 class="fuente">JKRAD</h2>
+                                    <h5 class="fuente">Es un sistema de reservaciones de restaurantes en tiempo real. La plataforma de JKRAD le permite atraer nuevos clientes, gestionar a los ya existentes
+                                        y tener reservaciones las 24 horas del dia. Versión de prueba gratuita, reservaciones ilimitadas, basada en la nube,
+                                        flexible y fácil de usar.</h5>
+                                </div>
+
+                                <button class="mdl-button mdl-js-button mdl-button--raised">
+                                    <i class="fa fa-android"></i> PlayStore
+                                </button>
+
+
+                            </div>
+                            <br><br><br><br><br><br><br><br><br>
+                            <div class="col-md-6 col-md-offset-1 texto-centrado">
+                                <div class="description">
+                                    <h2 class="fuente">Lorem</h2>
+                                    <h5 class="fuente">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                                        in voluptate velit esse cillum dolore eu fugiat
+                                        nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <reserva-footer></reserva-footer>
+            </div>
+        </template>
+        <script>
+            "use strict";
+            (function () {
+                let template = elementPrevio();
+                registraElement("reserva-inicio", class extends HTMLElement {
+                    connectedCallback() {
+                        this.classList.add("panel");
+                        cargaTemplate(this, template);
+                    }
+                });
+            })();
+        </script>
+    </body>
+</html>

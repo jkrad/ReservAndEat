@@ -4,11 +4,11 @@ import com.appspot.reservandeat_171704.ModeloFormColonia;
 
 import com.google.appengine.api.datastore.Query;
 
-import net.reservandeat_171704.base.UtilBase;
-import net.reservandeat_171704.datastore.Consulta;
-import net.reservandeat_171704.datastore.Datastore;
-import net.reservandeat_171704.si.Renglon;
-import net.reservandeat_171704.si.backend.CtrlAbcHttp;
+import net.ramptors.base.UtilBase;
+import net.ramptors.datastore.Consulta;
+import net.ramptors.datastore.Datastore;
+import net.ramptors.si.Renglon;
+import net.ramptors.si.backend.CtrlAbcHttp;
 
 import java8.util.function.Consumer;
 
@@ -18,9 +18,9 @@ import static com.google.appengine.api.datastore.Entity.KEY_RESERVED_PROPERTY;
 import static com.google.appengine.api.datastore.Query.CompositeFilterOperator.and;
 import static com.google.appengine.api.datastore.Query.FilterOperator.EQUAL;
 import static com.google.appengine.api.datastore.Query.FilterOperator.NOT_EQUAL;
-import static net.reservandeat_171704.base.UtilBase.isTrue;
-import static net.reservandeat_171704.base.UtilBase.texto;
-import static net.reservandeat_171704.datastore.Datastore.getKey;
+import static net.ramptors.base.UtilBase.isTrue;
+import static net.ramptors.base.UtilBase.texto;
+import static net.ramptors.datastore.Datastore.getKey;
 import static org.bouncycastle.util.Strings.toUpperCase;
 import com.appspot.reservandeat_171704.backend.entidades.Colonia;
 

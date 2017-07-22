@@ -1,16 +1,11 @@
 package com.appspot.reservandeat_171704.backend.entidades;
 
 import com.google.appengine.api.datastore.Key;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * @author Gilberto Pacheco Gallegos
- */
 public class Usuario {
 
     @NotNull
@@ -21,7 +16,7 @@ public class Usuario {
     @NotNull
     @Size(min = 1, max = 255)
     private String nombre;//Nombre del usuario
-    private String telefono;
+    private String telefono;//Numero del usuario
     private List<Key> roles = new ArrayList<>();
     private String upperKey;
 

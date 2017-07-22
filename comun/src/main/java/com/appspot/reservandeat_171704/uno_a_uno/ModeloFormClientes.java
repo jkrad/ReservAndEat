@@ -15,8 +15,8 @@
  */
 package com.appspot.reservandeat_171704.uno_a_uno;
 
-import net.reservandeat_171704.si.ModeloFormAbc;
-import net.reservandeat_171704.si.Renglon;
+import net.ramptors.si.ModeloFormAbc;
+import net.ramptors.si.Renglon;
 
 import java.util.List;
 

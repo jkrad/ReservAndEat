@@ -7,44 +7,45 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * @author Gilberto Pacheco Gallegos
- */
 @SuppressWarnings({"WeakerAccess", "unused", "FieldCanBeLocal"})
 public class Restaurante {
 
-    private Long key;
+    @NotNull
+    private String key; //Este se va a manejar como el correo
     @NotNull
     @Size(min = 1, max = 255)
-    private String nombre;
+    private String nombreRestaurante;//Nombre del restaurante
     @NotNull
     private String telefono;
     @NotNull
-    private String puestoEncargado;
-    @NotNull
-    private String correo;
+    private String puestoEncargado;//Puesto del gerente?
     @NotNull
     private String contrasena;
 
     private List<Key> roles = new ArrayList<>();
     private String upperKey;
-
     private Key comida;
+    @NotNull
+    private String diaInicio;
+    @NotNull
+    private String diaFin;
+    @NotNull
+    private String horaInicio;
+    @NotNull
+    private String horaFin;
 
-    public Long getKey() {
-        return key;
+    private Key colonia;
+    @NotNull
+    private String numExterior;
+    @NotNull
+    private String numInterior;
+
+    public String getNombreRestaurante() {
+        return nombreRestaurante;
     }
 
-    public void setKey(Long key) {
-        this.key = key;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreRestaurante(String nombreRestaurante) {
+        this.nombreRestaurante = nombreRestaurante;
     }
 
     public String getTelefono() {
@@ -61,14 +62,6 @@ public class Restaurante {
 
     public void setPuestoEncargado(String puestoEncargado) {
         this.puestoEncargado = puestoEncargado;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
     }
 
     public String getContrasena() {
@@ -102,4 +95,69 @@ public class Restaurante {
     public void setComida(Key comida) {
         this.comida = comida;
     }
+
+    public String getDiaInicio() {
+        return diaInicio;
+    }
+
+    public void setDiaInicio(String diaInicio) {
+        this.diaInicio = diaInicio;
+    }
+
+    public String getDiaFin() {
+        return diaFin;
+    }
+
+    public void setDiaFin(String diaFin) {
+        this.diaFin = diaFin;
+    }
+
+    public String getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(String horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public String getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(String horaFin) {
+        this.horaFin = horaFin;
+    }
+
+    public Key getColonia() {
+        return colonia;
+    }
+
+    public void setColonia(Key colonia) {
+        this.colonia = colonia;
+    }
+
+    public String getNumExterior() {
+        return numExterior;
+    }
+
+    public void setNumExterior(String numExterior) {
+        this.numExterior = numExterior;
+    }
+
+    public String getNumInterior() {
+        return numInterior;
+    }
+
+    public void setNumInterior(String numInterior) {
+        this.numInterior = numInterior;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+    
 }

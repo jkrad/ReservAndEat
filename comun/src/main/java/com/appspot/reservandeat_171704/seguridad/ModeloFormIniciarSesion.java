@@ -1,23 +1,19 @@
-
 package com.appspot.reservandeat_171704.seguridad;
 
-import net.reservandeat_171704.si.ModeloForm;
+import net.ramptors.si.ModeloForm;
 
-/**
- * @author Gilberto Pacheco Gallegos
- */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class ModeloFormIniciarSesion extends ModeloForm {
 
-    private String id;
+    private String correo;
     private String contrasena;
 
-    public String getId() {
-        return id;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getContrasena() {

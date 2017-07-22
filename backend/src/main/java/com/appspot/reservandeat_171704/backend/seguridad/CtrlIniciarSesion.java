@@ -4,8 +4,7 @@ import com.appspot.reservandeat_171704.backend.entidades.Usuario;
 import com.appspot.reservandeat_171704.seguridad.ModeloFormIniciarSesion;
 import com.google.appengine.api.datastore.Key;
 
-import net.reservandeat_171704.si.backend.CtrlBaseHttp;
-
+import net.ramptors.si.backend.CtrlBaseHttp;
 import org.bouncycastle.util.encoders.Base64;
 
 import java.io.ByteArrayOutputStream;
@@ -25,9 +24,9 @@ import static com.appspot.reservandeat_171704.backend.seguridad.UtilSeguridad.NO
 import static com.appspot.reservandeat_171704.backend.seguridad.UtilSeguridad.encripta;
 import static com.appspot.reservandeat_171704.backend.seguridad.UtilSeguridad.getCookie;
 import static java8.util.stream.StreamSupport.stream;
-import static net.reservandeat_171704.base.UtilBase.isNullOrEmpty;
-import static net.reservandeat_171704.base.UtilBase.isPresent;
-import static net.reservandeat_171704.datastore.Datastore.busca;
+import static net.ramptors.base.UtilBase.isNullOrEmpty;
+import static net.ramptors.base.UtilBase.isPresent;
+import static net.ramptors.datastore.Datastore.busca;
 
 public class CtrlIniciarSesion extends CtrlBaseHttp<ModeloFormIniciarSesion> {
 
@@ -45,24 +44,25 @@ public class CtrlIniciarSesion extends CtrlBaseHttp<ModeloFormIniciarSesion> {
                     return;
             }
         }
-        modeloForm.setSiguienteForm("compro-inicio");
+        modeloForm.setSiguienteForm("reserva-inicio");
     }
 
     private void inicia(ModeloFormIniciarSesion modeloForm) {
         modeloForm.setContrasena("");
-        modeloForm.setId("");
+        modeloForm.setCorreo("");
     }
 
     private void iniciaSesion(final ModeloFormIniciarSesion modeloForm) {
-        final String id = modeloForm.getId();
+        final String correo = modeloForm.getCorreo();
         final String contrasena = modeloForm.getContrasena();
-        if (isNullOrEmpty(id)) {
+        
+        if (isNullOrEmpty(correo)) {
             throw new RuntimeException("Falta el correo.");
         } else if (isNullOrEmpty(contrasena)) {
             throw new RuntimeException("Falta la contraseña.");
         } else {
-            busca(Usuario.class, id).ifPresentOrElse(
-                    new Consumer<Usuario>() {
+            busca(Usuario.class, correo).ifPresentOrElse( new Consumer<Usuario>() {
+                
                 @Override
                 public void accept(Usuario usuario) {
                     final String contrasenaEncriptada = encripta(contrasena);
@@ -71,7 +71,7 @@ public class CtrlIniciarSesion extends CtrlBaseHttp<ModeloFormIniciarSesion> {
                         try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
                                 DataOutputStream daos = new DataOutputStream(baos)) {
                             daos.writeDouble(Math.random());
-                            daos.writeUTF(id);
+                            daos.writeUTF(correo);
                             daos.writeDouble(Math.random());
                             daos.writeUTF(stream(usuario.getRoles())
                                     .filter(new Predicate<Key>() {
@@ -105,7 +105,7 @@ public class CtrlIniciarSesion extends CtrlBaseHttp<ModeloFormIniciarSesion> {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        modeloForm.setSiguienteForm("compro-inicio");
+                        modeloForm.setSiguienteForm("reserva-inicio");
                     } else {
                         throw new RuntimeException(
                                 "Combinación correo/contraseña incorrecta.");

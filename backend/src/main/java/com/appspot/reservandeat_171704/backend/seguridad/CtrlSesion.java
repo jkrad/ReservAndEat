@@ -2,8 +2,8 @@ package com.appspot.reservandeat_171704.backend.seguridad;
 
 import com.appspot.reservandeat_171704.seguridad.ModeloFormSesion;
 
-import net.reservandeat_171704.si.Sesion;
-import net.reservandeat_171704.si.backend.CtrlBaseHttp;
+import net.ramptors.si.Sesion;
+import net.ramptors.si.backend.CtrlBaseHttp;
 
 import javax.servlet.http.Cookie;
 
@@ -37,10 +37,12 @@ public class CtrlSesion extends CtrlBaseHttp<ModeloFormSesion> {
                 new Consumer<Sesion>() {
             @Override
             public void accept(Sesion sesion) {
+
                 final String esAdministrador = sesion.tieneRol(ADMINISTRADOR) ? "true" : "false";
                 final String esGerente = sesion.tieneRol(GERENTE) ? "true" : "false";
-                final String esComensal = sesion.tieneRol(COMENSAL) ? "true": "false";
+                final String esComensal = sesion.tieneRol(COMENSAL) ? "true" : "false";
                 final ModeloFormSesion modeloForm = getModeloForm().get();
+
                 modeloForm.setSesionId(sesion.getId());
                 modeloForm.setIniciarSesionMuestra("false");
                 modeloForm.setTerminarSesionMuestra("true");
@@ -73,7 +75,7 @@ public class CtrlSesion extends CtrlBaseHttp<ModeloFormSesion> {
             }
         });
         sesionTerminada();
-        modeloForm.setSiguienteForm("compro-inicio");
+        modeloForm.setSiguienteForm("reserva-inicio");
     }
 
     private void sesionTerminada() {

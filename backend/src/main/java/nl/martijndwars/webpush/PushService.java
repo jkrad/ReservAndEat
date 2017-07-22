@@ -38,7 +38,7 @@ import javax.crypto.NoSuchPaddingException;
 import java8.util.Optional;
 import java8.util.function.Consumer;
 
-import static net.reservandeat_171704.base.UtilIO.leeString;
+import static net.ramptors.base.UtilIO.leeString;
 
 public class PushService {
 

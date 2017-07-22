@@ -1,21 +1,8 @@
-/* Copyright 2017 Gilberto Pacheco Gallegos.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License. */
 
 // ESTE ARCHIVO SIMPRE DEBE ESTAR EN LA RAIZ DE LA APLICACION.
 
 "use strict";
-const CACHE_COMPRO = "cache-compro-v1.00";
+const CACHE_RESERVA = "cache-reserva-v3.00";
 // Archivos requeridos para que la aplicación funcione fuera de línea.
 const REQUIRED_FILES = [
     "comp/rmpt/rmpt-boton-menu.html",
@@ -28,21 +15,16 @@ const REQUIRED_FILES = [
     "comp/rmpt/rmpt-selecciona-muchos.html",
     "comp/rmpt/rmpt-selecciona-uno.html",
     "comp/rmpt/rmpt-selector.html",
-    "comp/compro-footer.html",
-    "comp/compro-inicio.html",
-    "comp/compro-main.html",
-    "comp/compro-panel-maestro.html",
-    "comp/compro-reporte.html",
-    "comp/compro-reporte-renglon.html",
-    "comp/form-avisos.html",
-    "comp/form-carrito.html",
-    "comp/form-categorias.html",
+    "comp/reserva-footer.html",
+    "comp/reserva-inicio.html",
+    "comp/reserva-main.html",
+    "comp/reserva-panel-maestro.html",
+    "comp/reserva-panel-secundario.html",
     "comp/form-tipo-comida.html",
     "comp/form-colonia.html",
-    "comp/form-clientes.html",
+    "comp/form-registrar.html",
+    "comp/form-registrar-restaurante.html",
     "comp/form-iniciar-sesion.html",
-    "comp/form-productos.html",
-    "comp/form-productos-cliente.html",
     "comp/form-sesion.html",
     "comp/form-usuarios.html",
     "comp/form-servicio.html",
@@ -98,11 +80,10 @@ const REQUIRED_FILES = [
     "js/libs/MedWeb.js",
     "js/libs/util.js",
     "js/bdAbierta.js",
-    "js/compro.js",
+    "js/reserva.js",
     "js/CtrlAvisos.js",
     "js/InfoAviso.js",
     "js/sincronizacion.js",
-    'formReporte.html',
     'index.html',
     "manifest.json",
     '/' // Separa esta URL de index.html
@@ -111,7 +92,7 @@ self.addEventListener('install', evt => {
     console.log("[Service Worker] Install.");
     // Realiza la instalación: carga los archivos requeridos en la cache.
     evt.waitUntil(
-            caches.open(CACHE_COMPRO)
+            caches.open(CACHE_RESERVA)
             .then(function (cache) {
                 // Añade todas las dependencias fuera de línea al cache.
                 return cache.addAll(REQUIRED_FILES);
@@ -127,7 +108,7 @@ self.addEventListener("push", evt => {
     let data = JSON.parse(text);
     if (data.noticia && self.registration && self.registration.showNotification) {
         const options = {body: data.noticia, icon: "img/ic_launcher_72px.png"};
-        evt.waitUntil(self.registration.showNotification("Compro", options));
+        evt.waitUntil(self.registration.showNotification("Reserva", options));
     } else {
         self.clients.claim()
                 .then(() => self.clients.matchAll())
@@ -137,7 +118,7 @@ self.addEventListener("push", evt => {
 self.addEventListener('notificationclick', evt => {
     console.log('[Service Worker] Notification click Recibida.');
     evt.notification.close();
-    evt.waitUntil(clients.openWindow('https://https://reserveatut.appspot.com/'));
+    evt.waitUntil(clients.openWindow('https://reserveatut.appspot.com/'));
 });
 // Toma de la caché archivos solicitados. Los otros son descargados.
 self.addEventListener('fetch', function (evt) {

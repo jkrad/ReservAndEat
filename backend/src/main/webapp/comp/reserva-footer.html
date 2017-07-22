@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Campo de Captura</title>
+    <style>
+      compro-footer {
+        display: block;
+        padding: 1em;
+        text-align: center;
+      }
+      compro-footer address {display: inline}
+    </style>
+  </head>
+  <body>
+    <template>
+     Copyright © 2017 Desarrollado por JKRAD
+    </template>
+    <script>
+      "use strict";
+      (function () {
+        let template = elementPrevio();
+        registraElement("reserva-footer", class extends HTMLElement {
+          connectedCallback() {
+            cargaTemplate(this, template);
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

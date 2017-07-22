@@ -2,7 +2,7 @@
 "use strict";
 Object.defineProperty(window, "bdAbierta", {
     value: new window.Promise((resolve, reject) => {
-        let solicitud = window.indexedDB.open("compro", 2);
+        let solicitud = window.indexedDB.open("reserva", 2);
         solicitud.onerror = evt => reject(new Error(evt.target.error.name));
         // Al crear la base o hacerle cambios hay que crear las tablas.
         solicitud.onupgradeneeded = evt => {

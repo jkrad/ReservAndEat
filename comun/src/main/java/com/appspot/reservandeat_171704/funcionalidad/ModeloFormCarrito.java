@@ -15,7 +15,7 @@
  */
 package com.appspot.reservandeat_171704.funcionalidad;
 
-import net.reservandeat_171704.si.ModeloFormAbc;
+import net.ramptors.si.ModeloFormAbc;
 
 /** @author Gilberto Pacheco Gallegos */
 @SuppressWarnings({"WeakerAccess", "unused"})

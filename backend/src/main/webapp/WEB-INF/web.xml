@@ -10,16 +10,25 @@
         
     <servlet>
         <servlet-name>ctrlTipoComida</servlet-name>
-        <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
+        <servlet-class>net.ramptors.si.backend.ServletBase</servlet-class>
         <init-param>
             <param-name>controlador</param-name>
             <param-value>com.appspot.reservandeat_171704.backend.CtrlTipoComida</param-value>
         </init-param>
     </servlet>
+    
+    <servlet>
+        <servlet-name>ctrlRegistro</servlet-name>
+        <servlet-class>net.ramptors.si.backend.ServletBase</servlet-class>
+        <init-param>
+            <param-name>controlador</param-name>
+            <param-value>com.appspot.reservandeat_171704.backend.CtrlRegistro</param-value>
+        </init-param>
+    </servlet>
 
     <servlet>
         <servlet-name>ctrlColonia</servlet-name>
-        <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
+        <servlet-class>net.ramptors.si.backend.ServletBase</servlet-class>
         <init-param>
             <param-name>controlador</param-name>
             <param-value>com.appspot.reservandeat_171704.backend.CtrlColonia</param-value>
@@ -28,7 +37,7 @@
     
     <servlet>
         <servlet-name>ctrlServicio</servlet-name>
-        <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
+        <servlet-class>net.ramptors.si.backend.ServletBase</servlet-class>
         <init-param>
             <param-name>controlador</param-name>
             <param-value>com.appspot.reservandeat_171704.backend.CtrlServicio</param-value>
@@ -37,7 +46,7 @@
     
     <servlet>
         <servlet-name>ctrlRol</servlet-name>
-        <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
+        <servlet-class>net.ramptors.si.backend.ServletBase</servlet-class>
         <init-param>
             <param-name>controlador</param-name>
             <param-value>com.appspot.reservandeat_171704.backend.CtrlRol</param-value>
@@ -46,7 +55,7 @@
     
     <servlet>
         <servlet-name>ctrlRestaurantes</servlet-name>
-        <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
+        <servlet-class>net.ramptors.si.backend.ServletBase</servlet-class>
         <init-param>
             <param-name>controlador</param-name>
             <param-value>
@@ -57,7 +66,7 @@
     
     <servlet>
         <servlet-name>ctrlIniciarSesion</servlet-name>
-        <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
+        <servlet-class>net.ramptors.si.backend.ServletBase</servlet-class>
         <init-param>
             <param-name>controlador</param-name>
             <param-value>
@@ -67,8 +76,19 @@
     </servlet>
     
     <servlet>
+        <servlet-name>ctrlUsuarios</servlet-name>
+        <servlet-class>net.ramptors.si.backend.ServletBase</servlet-class>
+        <init-param>
+            <param-name>controlador</param-name>
+            <param-value>
+                com.appspot.reservandeat_171704.backend.muchos_a_muchos.CtrlUsuarios
+            </param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet>
         <servlet-name>ctrlSesion</servlet-name>
-        <servlet-class>net.reservandeat_171704.si.backend.ServletBase</servlet-class>
+        <servlet-class>net.ramptors.si.backend.ServletBase</servlet-class>
         <init-param>
             <param-name>controlador</param-name>
             <param-value>
@@ -101,27 +121,30 @@
         <servlet-name>ctrlTipoComida</servlet-name>
         <url-pattern>/ctrlTipoComida</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>ctrlRestaurantes</servlet-name>
+        <url-pattern>/ctrlRestaurantes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ctrlUsuarios</servlet-name>
+        <url-pattern>/ctrlUsuarios</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ctrlColonia</servlet-name>
         <url-pattern>/ctrlColonia</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>ctrlRol</servlet-name>
         <url-pattern>/ctrlRol</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>ctrlServicio</servlet-name>
         <url-pattern>/ctrlServicio</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>ctrlIniciarSesion</servlet-name>
         <url-pattern>/ctrlIniciarSesion</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>ctrlSesion</servlet-name>
         <url-pattern>/ctrlSesion</url-pattern>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Componente principal de la Aplicación</title>
+        <link rel="import" href="form-sesion.html">
+        <style>
+            reserva-main {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
+            reserva-main form-sesion {overflow: auto}
+            reserva-main > div.contenido {flex-grow: 1}
+            reserva-main > div.bloqueo {display: none}
+            @media screen and (max-width: 839px) {
+                reserva-main > div.bloqueo.bloquea {
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left:0;
+                    right: 0;
+                    z-index: 1
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <template>
+            <form-sesion></form-sesion>
+            <div class="bloqueo"></div>
+            <div class="contenido"></div>
+        </template>
+        <script>
+            "use strict";
+            (function () {
+                let template = elementPrevio();
+                registraElement("reserva-main", class extends HTMLElement {
+                    connectedCallback() {
+                        cargaTemplate(this, template);
+                        Object.defineProperties(this, {
+                            contenido: {value: document.querySelector(".contenido")},
+                            bloqueo: {value: document.querySelector(".bloqueo")},
+                            menu: {value: document.querySelector("form-sesion")}
+                        });
+                        window.addEventListener("hashchange", () => this.cambioDeHash());
+                        window.addEventListener("abremenu", () => this.abreMenu());
+                        this.bloqueo.addEventListener("click", () =>
+                            this.cierraMenu());
+                        this.cambioDeHash();
+                    }
+                    cambioDeHash() {
+                        borraTodosLosElementos(this.contenido);
+                        let hash = location.hash;
+                        switch (hash) {
+                            case "":
+                            case "#":
+                                this.contenido
+                                        .appendChild(document.createElement("reserva-inicio"));
+                                break;
+                            default :
+                                this.contenido
+                                        .appendChild(document.createElement(hash.substring(1)));
+                        }
+                    }
+                    abreMenu() {
+                        this.menu.classList.add("abierta");
+                        this.bloqueo.classList.add("bloquea");
+                    }
+                    cierraMenu() {
+                        this.menu.classList.remove("abierta");
+                        this.bloqueo.classList.remove("bloquea");
+                    }
+                });
+            })();
+        </script>
+    </body>
+</html>

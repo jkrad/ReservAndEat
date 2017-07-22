@@ -16,10 +16,10 @@ import java8.util.stream.Stream;
 
 import static com.appspot.reservandeat_171704.backend.seguridad.UtilSeguridad.encripta;
 import static java.util.Collections.singletonList;
-import static net.reservandeat_171704.datastore.Datastore.agregaEntidad;
-import static net.reservandeat_171704.datastore.Datastore.busca;
-import static net.reservandeat_171704.datastore.Datastore.eliminaTodos;
-import static net.reservandeat_171704.datastore.Datastore.getKey;
+import static net.ramptors.datastore.Datastore.agregaEntidad;
+import static net.ramptors.datastore.Datastore.busca;
+import static net.ramptors.datastore.Datastore.eliminaTodos;
+import static net.ramptors.datastore.Datastore.getKey;
 
 /**
  * Escucha el ciclo de vida de la aplicación web.
@@ -41,7 +41,6 @@ public class CtrlInicio implements ServletContextListener {
     private static final String ID_ADMINISTRADOR = "zentuskun@outlook.com";
     private static final String CONTRASENA_ADMINISTRADOR = "juanito";
     private static final String NOMBRE_ADMINISTRADOR = "JuanHC";
-
 
     /**
      * Se lista cuando la aplicación se iniciaTransaccion.

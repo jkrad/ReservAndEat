@@ -1,39 +1,41 @@
 package com.appspot.reservandeat_171704.backend.muchos_a_muchos;
 
-import com.appspot.reservandeat_171704.backend.entidades.Cliente;
 import com.appspot.reservandeat_171704.backend.entidades.Rol;
 import com.appspot.reservandeat_171704.backend.entidades.Usuario;
+import com.appspot.reservandeat_171704.backend.mensajeria.Mensajeria;
+import static com.appspot.reservandeat_171704.backend.seguridad.CtrlInicio.COMENSAL;
 import com.appspot.reservandeat_171704.muchos_a_muchos.ModeloFormUsuarios;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 
-import net.reservandeat_171704.datastore.Consulta;
-import net.reservandeat_171704.datastore.Datastore;
-import net.reservandeat_171704.si.Renglon;
-import net.reservandeat_171704.si.backend.CtrlAbcHttp;
+import net.ramptors.datastore.Consulta;
+import net.ramptors.datastore.Datastore;
+import net.ramptors.si.Renglon;
+import net.ramptors.si.backend.CtrlAbcHttp;
 
 import java.util.Objects;
 
 import java8.util.function.Consumer;
-import java8.util.stream.Collectors;
 import java8.util.stream.Stream;
 
 import static com.appspot.reservandeat_171704.backend.seguridad.UtilSeguridad.encripta;
 import static com.google.appengine.api.datastore.Entity.KEY_RESERVED_PROPERTY;
 import static com.google.appengine.api.datastore.Query.FilterOperator.EQUAL;
-import static net.reservandeat_171704.base.UtilBase.isNullOrEmpty;
-import static net.reservandeat_171704.base.UtilBase.isPresent;
-import static net.reservandeat_171704.base.UtilBase.isTrue;
-import static net.reservandeat_171704.base.UtilBase.texto;
-import static net.reservandeat_171704.base.UtilBase.toUpperCase;
-import static net.reservandeat_171704.datastore.Datastore.adaptaKeys;
-import static net.reservandeat_171704.datastore.Datastore.adaptaStrings;
-import static net.reservandeat_171704.datastore.Datastore.getKey;
+import static java.util.Collections.singletonList;
+import java.util.HashMap;
+import java.util.Map;
+import static net.ramptors.base.UtilBase.isNullOrEmpty;
+import static net.ramptors.base.UtilBase.isPresent;
+import static net.ramptors.base.UtilBase.isTrue;
+import static net.ramptors.base.UtilBase.texto;
+import static net.ramptors.base.UtilBase.toUpperCase;
+import static net.ramptors.datastore.Datastore.adaptaKeys;
+import static net.ramptors.datastore.Datastore.getKey;
 
 public class CtrlUsuarios
         extends CtrlAbcHttp<ModeloFormUsuarios, Usuario> {
 
     public CtrlUsuarios() {
-        super("Usuario Nuevo", new Datastore<Usuario>() {
+        super("Nuevo Comensal", new Datastore<Usuario>() {
         });
     }
 
@@ -51,9 +53,9 @@ public class CtrlUsuarios
     protected void llenaModelo() {
         final ModeloFormUsuarios modeloForm = getModeloForm().get();
         final String contrasena = modeloForm.getContrasena();
-        final String id = modeloForm.getKey();
-        if (isTrue(modeloForm.getNuevo()) && isNullOrEmpty(id)) {
-            throw new RuntimeException("Falta el identificador.");
+        final String correo = modeloForm.getKey();
+        if (isTrue(modeloForm.getNuevo()) && isNullOrEmpty(correo)) {
+            throw new RuntimeException("Falta el correo.");
         } else if (isTrue(modeloForm.getNuevo()) && isNullOrEmpty(contrasena)) {
             throw new RuntimeException("Falta la Contraseña.");
         } else if (isTrue(modeloForm.getDebeConfirmar())
@@ -66,9 +68,9 @@ public class CtrlUsuarios
         } else if (isTrue(modeloForm.getNuevo()) && new Consulta<Usuario>() {
         }
                 .setFilter(new FilterPredicate(KEY_RESERVED_PROPERTY, EQUAL,
-                        getKey(Usuario.class, id))).lista().count() > 0) {
+                        getKey(Usuario.class, correo))).lista().count() > 0) {
             throw new RuntimeException(
-                    "El nombre de usuario ya está reservado.");
+                    "El correo proporcionado ya está reservado.");
         } else {
             getModelo().ifPresent(new Consumer<Usuario>() {
                 @Override
@@ -81,7 +83,7 @@ public class CtrlUsuarios
                     }
                     modelo.setNombre(modeloForm.getNombre());
                     modelo.setTelefono(modeloForm.getTelefono());
-                    modelo.setRoles(adaptaStrings(modeloForm.getRoles()));
+                    modelo.setRoles(singletonList(getKey(Rol.class, COMENSAL)));
                     modelo.setUpperKey(toUpperCase(modelo.getKey()));
                 }
             });
@@ -108,26 +110,11 @@ public class CtrlUsuarios
     }
 
     @Override
-    protected void muestraOpciones() {
-        final ModeloFormUsuarios modeloForm = getModeloForm().get();
-        modeloForm.setRolesOpciones(
-                new Consulta<Rol>() {
-                }.lista().map(new FuncionRolRenglon())
-                        .collect(Collectors.<Renglon>toList()));
-    }
+    protected void agregaModelo() {
+        super.agregaModelo();
+        final Map<String, String> data = new HashMap<>();
+        data.put("noticia", "Tu registro fue exitoso!.");
+        Mensajeria.notifica(data);
 
-    @Override
-    protected void autorizaBorrado() {
-        getModelo().ifPresent(new Consumer<Usuario>() {
-            @Override
-            public void accept(Usuario modelo) {
-                if (new Consulta<Cliente>() {
-                }.setAncestor(getKey(modelo)).lista()
-                        .count() > 0) {
-                    throw new RuntimeException(
-                            "El usuario tiene información de cliente.");
-                }
-            }
-        });
     }
 }
